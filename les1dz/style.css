@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "JetBrainsMono-Bold";
+    src: url("webfonts/JetBrainsMono-Bold.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-BoldItalic";
+    src: url("webfonts/JetBrainsMono-BoldItalic.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-ExtraBold";
+    src: url("webfonts/JetBrainsMono-ExtraBold.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-ExtraLight";
+    src: url("webfonts/JetBrainsMono-ExtraLight.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-ExtraLightItalic";
+    src: url("webfonts/JetBrainsMono-ExtraLightItalic.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-Regular";
+    src: url("webfonts/JetBrainsMono-Regular.woff2")
+}
+
+h1{
+    background-color: green;
+}
+
+.paragraph-1{
+    background-color: blanchedalmond;
+    font-family: 'JetBrainsMono-Bold';
+    font-size: 30px;
+    color: black
+}
+
+.paragraph-2{
+    border: 2px solid white;
+    border-radius: 10px;
+    font-family: "JetBrainsMono-ExtraBold";
+    font-size: 30px;
+    margin-bottom: 50px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.paragraph-3{
+    font-family: 'JetBrainsMono-BoldItalic';
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.paragraph-4{
+    font-family: 'JetBrainsMono-Regular';
+    font-style: italic;
+    font-size: 24px;
+    text-align: center;
+    float: left;
+    margin-left: 100px;
+    margin-right: 100px;
+    text-shadow: 5px 5px 5px green;
+}
+
+.paragraph-5{
+    font-family: 'JetBrainsMono-ExtraLight';
+    font-size: 10px;
+}

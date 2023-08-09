@@ -1,0 +1,59 @@
+@font-face {
+    font-family: "JetBrainsMono-Bold";
+    src: url("webfonts/JetBrainsMono-Bold.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-BoldItalic";
+    src: url("webfonts/JetBrainsMono-BoldItalic.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-ExtraBold";
+    src: url("webfonts/JetBrainsMono-ExtraBold.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-ExtraLight";
+    src: url("webfonts/JetBrainsMono-ExtraLight.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-ExtraLightItalic";
+    src: url("webfonts/JetBrainsMono-ExtraLightItalic.woff2");
+}
+
+@font-face{
+    font-family: "JetBrainsMono-Regular";
+    src: url("webfonts/JetBrainsMono-Regular.woff2")
+}
+
+body {
+    background-color: #100010;
+  }
+
+.d-flex{
+    align-items: center;
+    margin-top: 300px;
+}
+
+.form-label{
+    font-family: "JetBrainsMono-Bold";
+    font-size: 50px;
+    background-color: #100010;
+    color: #fffff1;
+}
+
+.form-text{
+    font-family: "JetBrainsMono-Regular";
+    font-size: 20px;
+    background-color: #100010;
+    color: #fffff1;
+}
+
+.link{
+    font-family: "JetBrainsMono-ExtraLight";
+    font-size: 18px;
+    background-color: #100010;
+    color: #666699;
+}
