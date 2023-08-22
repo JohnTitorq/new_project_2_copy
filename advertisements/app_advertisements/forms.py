@@ -1,23 +1,34 @@
 from django import forms 
+from django.forms import ModelForm
+from pydantic import ValidationError
+from app_advertisements.models import *
 
 
-class AdvertisementForm(forms.Form):
-    title=forms.CharField(max_length=64,
-                          widget=forms.TextInput(attrs={
+class AdvertisementForm(ModelForm):
+    class Meta:
+        model=Advertisement
+        fields=['title', 'description', 'price', 'auction', 'image']
+        widgets={
+
+            'title': forms.TextInput(attrs={
                               'class': 'form-control'
-                          })
-                        )
-    description=forms.CharField(widget=forms.Textarea(attrs={
+                              }),
+
+            'description': forms.Textarea(attrs={
                               'class': 'form-control'
-                          })
-                        )
-    price=forms.DecimalField(widget=forms.NumberInput(attrs={
+                          }),
+
+            'price': forms.NumberInput(attrs={
                               'class': 'form-control'
-                          }))
-    auction=forms.BooleanField(widget=forms.CheckboxInput(attrs={
+                          }),
+            
+            'auction': forms.CheckboxInput(attrs={
                               'class': 'form-check-input'
-                          }), 
-                          required=True)
-    image=forms.ImageField(widget=forms.FileInput(attrs={
+                          }),
+            
+            'image': forms.FileInput(attrs={
                               'class': 'form-control'
-                          }))
+                          })
+
+        }
+

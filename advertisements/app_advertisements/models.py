@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib import admin
 from django.utils.html import format_html
 from django.contrib.auth import get_user_model
+from django.core.validators import RegexValidator
 
 
 User=get_user_model()
@@ -15,13 +16,16 @@ class Advertisement(models.Model):
         on_delete=models.CASCADE
     )
 
-    image=models.ImageField(
-        "image",
-        upload_to="advertisements/"
-    )
-    
     # строковое поле для небольших размеров | 'Заголовок' = verbose_name = название поля извне
-    title=models.CharField("Заголовок", max_length=128)
+    title=models.CharField("Заголовок", max_length=128, validators=[
+        RegexValidator(
+            regex=r'^[?]',
+            message='Строка не может начинаться с "?"',
+            code='invalid',
+            inverse_match=True
+        )
+    ]
+    )
     
     # описание товара ( большое текстовое поле = TextField )
     description=models.TextField("Описание")
@@ -31,6 +35,12 @@ class Advertisement(models.Model):
 
     # возможность торга ( True/False )
     auction=models.BooleanField("Торг", help_text="Отметьте, уместен ли торг.")
+
+    # image
+    image=models.ImageField(
+        "image",
+        upload_to="advertisements/"
+    )
 
     # имя продавца + контакты
 
