@@ -5,42 +5,73 @@
 
 {% block content %}
 <body>
+  <!-- Панель навигации -->
   <ul class="nav nav-pills sticky-top bg-white nav-fill">
+    
+    <!-- only for registered user -->
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link"  href="{% url 'main-page' %}">
+      <a class="nav-link" href="{% url 'main-page' %}">
         <span style="font-weight: bold;">Главная</span>
       </a>
     </li>
+    {% endif %}
+  
+    <!-- only for registered user -->
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
+      <a class="nav-link active" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
       </a>
     </li>
+    {% endif %}
+  
+    <!-- only for registered user -->
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
       <a class="nav-link" href="{% url 'advertisement-post' %}">
         <span style="font-weight: bold;">Разместить объявление</span>
       </a>
     </li>
+    {% endif %}
+  
+    <!-- for unregistered user -->
+    {% if not request.user.is_authenticated %}
     <li class="nav-item">
       <a class="nav-link" href="{% url 'register' %}">
         <span style="font-weight: bold;">Регистрация</span>
       </a>
     </li>
+    {% endif %}
+  
+    <!-- for unregistered user -->
+    {% if not request.user.is_authenticated %}
     <li class="nav-item">
       <a class="nav-link" href="{% url 'login' %}">
         <span style="font-weight: bold;">Войти</span>
       </a>
     </li>
+    {% endif %}
+  
+    <!-- only for registered user -->
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'profile' %}">
+      <a class="nav-link" aria-current="page" href="{% url 'profile' %}">
         <span style="font-weight: bold;">Профиль</span>
       </a>
     </li>
+    {% endif %}
+  
+    <!-- only for registered user -->
+    {% if request.user.is_authenticated %}
     <li class="nav-item">
-      <a class="nav-link" href="#">
+      <a class="nav-link" href="{% url 'logout' %}">
         <span style="font-weight: bold;">Выйти</span>
       </a>
     </li>
+    {% endif %}
   </ul>
+
+  <!-- main -->
   <div class="row">
     <div class="col" style="margin: 50px;">
       <div class="display-2">

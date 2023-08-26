@@ -7,40 +7,68 @@
 <body>
 <!-- Панель навигации -->
 <ul class="nav nav-pills sticky-top bg-white nav-fill">
+    
+  <!-- only for registered user -->
+  {% if request.user.is_authenticated %}
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="{% url 'main-page' %}">
+    <a class="nav-link active" href="{% url 'main-page' %}">
       <span style="font-weight: bold;">Главная</span>
     </a>
   </li>
+  {% endif %}
+
+  <!-- only for registered user -->
+  {% if request.user.is_authenticated %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'top-sellers' %}"><span style="font-weight: bold;">Топ продавцов</span>
     </a>
   </li>
+  {% endif %}
+
+  <!-- only for registered user -->
+  {% if request.user.is_authenticated %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'advertisement-post' %}">
       <span style="font-weight: bold;">Разместить объявление</span>
     </a>
   </li>
+  {% endif %}
+
+  <!-- for unregistered user -->
+  {% if not request.user.is_authenticated %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'register' %}">
       <span style="font-weight: bold;">Регистрация</span>
     </a>
   </li>
+  {% endif %}
+
+  <!-- for unregistered user -->
+  {% if not request.user.is_authenticated %}
   <li class="nav-item">
     <a class="nav-link" href="{% url 'login' %}">
       <span style="font-weight: bold;">Войти</span>
     </a>
   </li>
+  {% endif %}
+
+  <!-- only for registered user -->
+  {% if request.user.is_authenticated %}
   <li class="nav-item">
-    <a class="nav-link" href="{% url 'profile' %}">
+    <a class="nav-link" aria-current="page" href="{% url 'profile' %}">
       <span style="font-weight: bold;">Профиль</span>
     </a>
   </li>
+  {% endif %}
+
+  <!-- only for registered user -->
+  {% if request.user.is_authenticated %}
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'logout' %}">
       <span style="font-weight: bold;">Выйти</span>
     </a>
   </li>
+  {% endif %}
 </ul>
 
 <!-- Прокруточка -->
@@ -91,9 +119,11 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Еще что-нибудь</a>
       </li>
     </ul>
-    <form class="row g-3">
+
+    <!-- Форма поиска -->
+    <form class="row g-3", method="get">
       <div class="col-auto w-50">
-        <input type="text" class="form-control">
+        <input name="query" value="{% if title %}{{ title }}{% endif %}" type="text" class="form-control">
       </div>
       <div class="col-auto">
         <button type="submit" class="btn btn-success mb-3">Найти</button>
@@ -102,21 +132,22 @@
   </div>
   <!-- Список объявлений -->
   <div class="col">
+
     {% for adv in advertisements %}
     <div class="card mb-2" style="max-width: 1200px; margin-top: 20px;">
       <div class="row g-0">
         <div class="col-md-4">
-          <a href="{% url 'advertisement' %}" class="nav-link">
+          <a href="{{ adv.get_absolute_url }}" class="nav-link">
             <img src="{% if adv.image %}{{ adv.image.url }}{% else %}{% static 'img/adv.png' %}{% endif %}" class="img-fluid rounded-start" alt="Card title"> <!-- {% static 'img/adv.png' %} -->
           </a>
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">
-              <a href="{% url 'advertisement' %}" class="nav-link"><strong>{{ adv.title }}</strong>
+              <a href="{{ adv.get_absolute_url }}" class="nav-link"><strong>{{ adv.title }}</strong>
             </a>
             </h5>
-            <a href="{% url 'advertisement' %}" class="nav-link">
+            <a href="{{ adv.get_absolute_url }}" class="nav-link">
               <p class="card-text">{{ adv.description }}</p>
               <span>
                 {{ adv.user }}

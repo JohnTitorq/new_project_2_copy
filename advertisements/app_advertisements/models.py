@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from django.contrib.auth import get_user_model
 from django.core.validators import RegexValidator
+from django.urls import reverse
 
 
 User=get_user_model()
@@ -67,6 +68,10 @@ class Advertisement(models.Model):
     # строковое представление:
     def __str__(self) -> str:
         return f"<Advertisement: Advertisement(id={self.id}, title={self.title}, price={self.price})>"
+    
+    # absolute URL
+    def get_absolute_url(self):
+        return reverse('adv-detail', kwargs={'pk': self.pk})
     
     # отображенеие времени создания: 
     @admin.display(description="Дата Создания")
